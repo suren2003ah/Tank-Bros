@@ -1,6 +1,5 @@
 
 omnisharp.json
 _vimrc_local.vim
-Library/*
-Library
 Temp/UnityLockfile
+Library/
