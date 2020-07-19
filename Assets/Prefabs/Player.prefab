@@ -1705,6 +1705,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d22b1ae7d4acf42befb2f85639d476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovingPlayer1: {fileID: 7279185380700260316, guid: 2c1c8213eac875d4186702430f88f562,
+    type: 3}
+  MovingPlayer2: {fileID: 8789262764405782626, guid: 70fd4c1e10207eb4983caa22addee1dd,
+    type: 3}
   forwardForce: 500
   turnForce: 150
   playerNumber: 2

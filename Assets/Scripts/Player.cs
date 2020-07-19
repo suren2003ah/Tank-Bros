@@ -4,6 +4,8 @@ public class Player : MonoBehaviour {
 	// Start is called before the first frame update
 	private Rigidbody rb;
 	private Transform playerPos;
+	public GameObject MovingPlayer1;
+	public GameObject MovingPlayer2;
 	public float forwardForce;
 	public float turnForce;
 	public int playerNumber;
@@ -31,8 +33,10 @@ public class Player : MonoBehaviour {
 		if (playerNumber == 1) {
 			if (Input.GetKey("w")) {
 				rb.AddForce(playerPos.forward * forwardForce, ForceMode.Force);
+				Instantiate(MovingPlayer1, playerPos.position, Quaternion.identity);
 			} else if (Input.GetKey("s")) {
 				rb.AddForce(playerPos.forward * -forwardForce, ForceMode.Force);
+				Instantiate(MovingPlayer1, playerPos.position, Quaternion.identity);
 			}
 			if (Input.GetKey("d")) {
 
@@ -46,8 +50,10 @@ public class Player : MonoBehaviour {
 		} else if (playerNumber == 2) {
 			if (Input.GetKey("up")) {
 				rb.AddForce(playerPos.forward * forwardForce, ForceMode.Force);
+				Instantiate(MovingPlayer2, playerPos.position, Quaternion.identity);
 			} else if (Input.GetKey("down")) {
 				rb.AddForce(playerPos.forward * -forwardForce, ForceMode.Force);
+				Instantiate(MovingPlayer2, playerPos.position, Quaternion.identity);
 			}
 			if (Input.GetKey("right")) {
 				rb.AddTorque(0, turnForce, 0);
