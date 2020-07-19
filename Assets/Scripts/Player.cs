@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class Player : MonoBehaviour {
 	// Start is called before the first frame update
-	public Rigidbody rb;
+	private Rigidbody rb;
 	public GameObject Bullet;
-	public Transform playerPos;
+	private Transform playerPos;
 	public float forwardForce;
 	public float turnForce;
 	public int playerNumber;
 	public float bulletSpeed;
 	void Start() {
-
+		playerPos = GetComponent<Transform>();
+		rb = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class killPlayer : MonoBehaviour
+public class KillPlayer : MonoBehaviour
 {
     void OnCollisionEnter(Collision collisionInfo)
     {
