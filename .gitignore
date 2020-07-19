@@ -4,3 +4,4 @@ _vimrc_local.vim
 Temp/UnityLockfile
 Library/
 Temp/
+Assets/Scripts/SyncSolutionUtilities.cs
