@@ -40,7 +40,7 @@ public class MazeGenerator : MonoBehaviour {
 				List<GameObject> objs = new List<GameObject>();
 				foreach (Vector3 direction in directions) {
 					RaycastHit hit;
-					if (Physics.Raycast(center, direction, out hit, Walldistance * 0.65f)) {
+					if (Physics.Raycast(center, direction, out hit, Walldistance * 0.65f, LayerMask.GetMask("Wall"))) {
 						objs.Add(hit.transform.gameObject);
 					}
 				}
