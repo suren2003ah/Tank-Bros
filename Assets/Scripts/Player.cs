@@ -3,12 +3,11 @@
 public class Player : MonoBehaviour {
 	// Start is called before the first frame update
 	private Rigidbody rb;
-	public GameObject Bullet;
 	private Transform playerPos;
 	public float forwardForce;
 	public float turnForce;
 	public int playerNumber;
-	public float bulletSpeed;
+	public Shooting shooting;
 	void Start() {
 		playerPos = GetComponent<Transform>();
 		rb = GetComponent<Rigidbody>();
@@ -18,15 +17,11 @@ public class Player : MonoBehaviour {
 	void Update() {
 		if (playerNumber == 1) {
 			if (Input.GetKeyDown("space")) {
-				GameObject instBullet = Instantiate(Bullet, playerPos.position + playerPos.forward * 3, Quaternion.identity) as GameObject;
-				Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
-				instBulletRigidbody.AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
+				shooting.Shoot();
 			}
 		} else if (playerNumber == 2) {
 			if (Input.GetKeyDown("/")) {
-				GameObject instBullet = Instantiate(Bullet, playerPos.position + playerPos.forward * 3, Quaternion.identity) as GameObject;
-				Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
-				instBulletRigidbody.AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
+				shooting.Shoot();
 			}
 		} else if (playerNumber == 3) {
 			// Aregak
