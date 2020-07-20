@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class Player : MonoBehaviour {
 	// Start is called before the first frame update
 	private Rigidbody rb;
@@ -26,17 +25,17 @@ public class Player : MonoBehaviour {
 				shooting.Shoot();
 			}
 		} else if (playerNumber == 3) {
-			// Aregak
+			if (Input.GetMouseButtonDown(0)) {
+				shooting.Shoot();
+			}
 		}
 	}
 	void FixedUpdate() {
 		if (playerNumber == 1) {
 			if (Input.GetKey("w")) {
 				rb.AddForce(playerPos.forward * forwardForce, ForceMode.Force);
-				Instantiate(MovingPlayer1, playerPos.position, Quaternion.identity);
 			} else if (Input.GetKey("s")) {
 				rb.AddForce(playerPos.forward * -forwardForce, ForceMode.Force);
-				Instantiate(MovingPlayer1, playerPos.position, Quaternion.identity);
 			}
 			if (Input.GetKey("d")) {
 
@@ -50,10 +49,8 @@ public class Player : MonoBehaviour {
 		} else if (playerNumber == 2) {
 			if (Input.GetKey("up")) {
 				rb.AddForce(playerPos.forward * forwardForce, ForceMode.Force);
-				Instantiate(MovingPlayer2, playerPos.position, Quaternion.identity);
 			} else if (Input.GetKey("down")) {
 				rb.AddForce(playerPos.forward * -forwardForce, ForceMode.Force);
-				Instantiate(MovingPlayer2, playerPos.position, Quaternion.identity);
 			}
 			if (Input.GetKey("right")) {
 				rb.AddTorque(0, turnForce, 0);
@@ -61,8 +58,14 @@ public class Player : MonoBehaviour {
 				rb.AddTorque(0, -turnForce, 0);
 			}
 		} else if (playerNumber == 3) {
-			//Aregak
-
+			if (Input.GetMouseButton(1)) {
+				rb.AddForce(playerPos.forward * forwardForce, ForceMode.Force);
+			}
+			if (Input.GetMouseButton(2)) {
+				rb.AddForce(playerPos.forward * -forwardForce, ForceMode.Force);
+			}
+			float input = Input.GetAxis("Mouse X") * 2;
+			rb.AddTorque(0, input * turnForce, 0);
 		}
 	}
 }
