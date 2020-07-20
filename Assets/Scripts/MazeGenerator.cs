@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MazeGenerator : MonoBehaviour {
@@ -9,7 +10,7 @@ public class MazeGenerator : MonoBehaviour {
 	public float Walldistance;
 	public int GridX, GridY;
 	public float balanceCoefficient;
-
+	private bool gameOver = false;
 	void Start() {
 		GenerateMaze();
 		Cursor.lockState = CursorLockMode.Locked;
@@ -58,5 +59,14 @@ public class MazeGenerator : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+		if (GameObject.FindGameObjectsWithTag("Player").Length <= 1 && !gameOver) {
+			StartCoroutine(Reload());
+			gameOver = true;
+		}
+	}
+
+	IEnumerator Reload() {
+		yield return new WaitForSeconds(3f);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
