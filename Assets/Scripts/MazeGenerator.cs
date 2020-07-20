@@ -7,11 +7,28 @@ public class MazeGenerator : MonoBehaviour {
 
 	public GameObject Wall;
 	public GameObject ball;
+	public Transform Player1;
+	public Transform Player2;
+	public Transform Player3;
+	private int length = 1;
 	public float Walldistance;
 	public int GridX, GridY;
 	public float balanceCoefficient;
 	private bool gameOver = false;
+	private Vector2 player1;
+	private Vector2 player2;
+	private Vector2 player3;
 	void Start() {
+		for (int u = 0; u < length; u++)
+        {
+			player1 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
+			player2 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
+			player3 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
+			if (player1.x == player2.x || player1.x == player3.x || player3.x == player2.x || player1.y == player2.y || player1.y == player3.y || player3.y == player2.y) 
+            {
+				length++;
+            }
+		}
 		GenerateMaze();
 		Cursor.lockState = CursorLockMode.Locked;
 	}
@@ -33,7 +50,19 @@ public class MazeGenerator : MonoBehaviour {
 
 		for (int x = 1; x < GridX + 1; x++) {
 			for (int y = 1; y < GridY + 1; y++) {
-				Vector3 center = transform.position + new Vector3((x) * Walldistance, 0, (y - 0.5f) * Walldistance);
+				Vector3 center = transform.position + new Vector3((x) * Walldistance, 2.2f, (y - 0.5f) * Walldistance);
+				if (x == player1.x && y == player1.y)
+                {
+					Player1.position = center;
+                }
+				if (x == player2.x && y == player2.y)
+				{
+					Player2.position = center;
+				}
+				if (x == player3.x && y == player3.y)
+				{
+					Player3.position = center;
+				}
 
 				Vector3[] directions = { Vector3.forward, Vector3.back, Vector3.right };
 				if (x == GridX) directions[2] = Vector3.zero;
