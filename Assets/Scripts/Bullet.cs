@@ -13,16 +13,13 @@ public class Bullet : MonoBehaviour
             Instantiate(ParticleDeath, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-    }
-    void Start()
-    {
-        deathTime = Time.time + lifeTime;
-    }
-    void Update()
-    {
         if (deathTime <= Time.time)
         {
             Destroy(gameObject);
         }
+    }
+    void Start()
+    {
+        deathTime = Time.time + lifeTime;
     }
 }

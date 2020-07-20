@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class MazeGenerator : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class MazeGenerator : MonoBehaviour {
 
 	void Start() {
 		GenerateMaze();
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	void GenerateMaze() {
@@ -56,6 +58,5 @@ public class MazeGenerator : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-
 	}
 }

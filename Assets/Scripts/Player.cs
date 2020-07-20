@@ -64,7 +64,7 @@ public class Player : MonoBehaviour {
 			if (Input.GetMouseButton(2)) {
 				rb.AddForce(playerPos.forward * -forwardForce, ForceMode.Force);
 			}
-			float input = Input.GetAxis("Mouse X") * 2;
+			float input = Input.GetAxis("Mouse X");
 			rb.AddTorque(0, input * turnForce, 0);
 		}
 	}
