@@ -29,6 +29,7 @@ public class MazeGenerator : MonoBehaviour {
 		}
 		GenerateMaze();
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 
 	void GenerateMaze() {
