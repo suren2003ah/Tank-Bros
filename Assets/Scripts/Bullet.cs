@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour {
 		}
 		if (collisionInfo.collider.tag == "Wall") {
 			CameraShaker.Instance.ShakeOnce(1f, 2f, 0.1f, .5f);
-			if (ticks == 0) {
+			if (ticks <= 3) {
 				player.gameObject.SetActive(false);
 				Instantiate(ParticleDeath, transform.position, Quaternion.identity);
 				CameraShaker.Instance.ShakeOnce(13f, 5f, 0.3f, 2f);

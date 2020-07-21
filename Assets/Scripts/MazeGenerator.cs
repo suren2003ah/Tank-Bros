@@ -45,15 +45,16 @@ public class MazeGenerator : MonoBehaviour {
 		}
 		gameOver = false;
 
-		GridX = Random.Range(3, 12); 
-		GridY = Random.Range(3, 6);
+		GridX = Random.Range(4, 12); 
+		GridY = Random.Range(4, 6);
+
 		for (int u = 0; u < length; u++) {
 			player1 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 			player2 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 			player3 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
-			//	if (player1.x == player2.x || player1.x == player3.x || player3.x == player2.x || player1.y == player2.y || player1.y == player3.y || player3.y == player2.y) {
-			//	length++;
-			//	}
+				if (player1.x == player2.x || player1.x == player3.x || player3.x == player2.x || player1.y == player2.y || player1.y == player3.y || player3.y == player2.y) {
+				length++;
+				}
 		}
 
 		Vector3 bottomLeft = transform.position - new Vector3(GridX * Walldistance, 0, GridY * Walldistance) * 0.5f;
