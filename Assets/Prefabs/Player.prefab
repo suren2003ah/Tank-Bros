@@ -1710,7 +1710,7 @@ MonoBehaviour:
   MovingPlayer2: {fileID: 8789262764405782626, guid: 70fd4c1e10207eb4983caa22addee1dd,
     type: 3}
   forwardForce: 500
-  turnForce: 150
+  turnForce: 200
   playerNumber: 2
   shooting: {fileID: 5562933852507495123}
 --- !u!54 &8551694541541943731
