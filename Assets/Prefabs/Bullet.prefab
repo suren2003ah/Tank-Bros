@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 10
+  shakeDuration: 1
+  shakeMagnitude: 2
   ParticleDeath: {fileID: 1442424869331288428, guid: acc7a935ef4db31489c2551aea2cbc7d,
     type: 3}
 --- !u!96 &7613848881238375442
