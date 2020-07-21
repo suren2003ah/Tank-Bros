@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 public class Player : MonoBehaviour {
 	// Start is called before the first frame update
 	private Rigidbody rb;
@@ -9,13 +10,28 @@ public class Player : MonoBehaviour {
 	public float turnForce;
 	public int playerNumber;
 	public Shooting shooting;
+	private float initialForwardForce;
 	void Start() {
 		playerPos = GetComponent<Transform>();
 		rb = GetComponent<Rigidbody>();
 	}
-
-	// Update is called once per frame
-	void Update() {
+	IEnumerator PowerUp(GameObject player)
+    {
+		initialForwardForce = forwardForce;
+		forwardForce *= 2;
+		Destroy(player);
+		yield return new WaitForSeconds(10f);
+		forwardForce = initialForwardForce;
+	}
+	void OnCollisionEnter(Collision collisionInfo)
+    {
+        if (collisionInfo.collider.tag == "SpeedPowerUp")
+        {
+			StartCoroutine(PowerUp(collisionInfo.collider.gameObject));
+        }
+    }
+    // Update is called once per frame
+    void Update() {
 		if (playerNumber == 1) {
 			if (Input.GetKeyDown("space")) {
 				shooting.Shoot();
