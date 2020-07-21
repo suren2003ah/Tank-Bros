@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Wall
   - CameraControl
+<<<<<<< HEAD
   - SpeedPowerUp
+=======
+  - Bullet
+>>>>>>> b5f1da51a876a30ec5eb139b41f63db507ed87f2
   layers:
   - Default
   - TransparentFX

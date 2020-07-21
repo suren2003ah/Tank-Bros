@@ -1539,8 +1539,6 @@ MonoBehaviour:
   Player2: {fileID: 600968868}
   Player3: {fileID: 749852940}
   Walldistance: 14.5
-  GridX: 10
-  GridY: 7
   balanceCoefficient: 0.25
 --- !u!4 &1396884999
 Transform:
@@ -1550,7 +1548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396884997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.9, y: 0, z: 0}
+  m_LocalPosition: {x: 47.8, y: 0, z: 50.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2154,14 +2152,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062306652}
-  m_LocalRotation: {x: 0.60876137, y: 0.00020768437, z: -0.00015936179, w: 0.7933534}
-  m_LocalPosition: {x: 53.06872, y: 91.16938, z: 20}
+  m_LocalRotation: {x: 0.60875565, y: 0.0034616182, z: -0.0026561928, w: 0.79334587}
+  m_LocalPosition: {x: 53.5, y: 90.86, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1006948832}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 75, y: 0.03, z: 0}
+  m_LocalEulerAnglesHint: {x: 75, y: 0.5, z: 0}
 --- !u!1001 &8551694540566006471
 PrefabInstance:
   m_ObjectHideFlags: 0

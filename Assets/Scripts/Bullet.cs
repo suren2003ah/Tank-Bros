@@ -8,15 +8,17 @@ public class Bullet : MonoBehaviour {
 	private int ticks = 0;
 	void OnCollisionEnter(Collision collisionInfo) {
 		if (collisionInfo.collider.tag == "Player") {
-			Destroy(collisionInfo.collider.gameObject);
-			Instantiate(ParticleDeath, transform.position, Quaternion.identity);
-			CameraShaker.Instance.ShakeOnce(13f, 5f, 0.3f, 2f);
-			Destroy(gameObject);
+			if (ticks > (0.1f/Time.deltaTime) || collisionInfo.collider.gameObject != player.gameObject) {
+				collisionInfo.collider.gameObject.SetActive(false);
+				Instantiate(ParticleDeath, transform.position, Quaternion.identity);
+				CameraShaker.Instance.ShakeOnce(13f, 5f, 0.3f, 2f);
+				Destroy(gameObject);
+			}
 		}
 		if (collisionInfo.collider.tag == "Wall") {
 			CameraShaker.Instance.ShakeOnce(1f, 2f, 0.1f, .5f);
-			if (ticks == 0) {
-				Destroy(player.gameObject);
+			if (ticks <= 3) {
+				player.gameObject.SetActive(false);
 				Instantiate(ParticleDeath, transform.position, Quaternion.identity);
 				CameraShaker.Instance.ShakeOnce(13f, 5f, 0.3f, 2f);
 				Destroy(gameObject);
