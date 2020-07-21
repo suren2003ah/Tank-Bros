@@ -19,9 +19,11 @@ public class CameraShake : MonoBehaviour
     {
         float x = Random.Range(-1f, 1f) * killShakeMagnitude;
         float y = Random.Range(-1f, 1f) * killShakeMagnitude;
+        float z = Random.Range(-1f, 1f) * killShakeMagnitude;
         Vector3 cameraIntermadiatePosition = MainCamera.transform.position;
         cameraIntermadiatePosition.x += x;
         cameraIntermadiatePosition.y += y;
+        cameraIntermadiatePosition.z += z;
         MainCamera.transform.position = cameraIntermadiatePosition;
     }
     public void StopCameraShaking()
