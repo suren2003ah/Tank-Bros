@@ -11,10 +11,14 @@ public class Bullet : MonoBehaviour
     {
         if (collisionInfo.collider.tag == "Player")
         {
-            boom.ShakeIt();
+            boom.ShakeKill();
             Destroy(collisionInfo.collider.gameObject);
             Instantiate(ParticleDeath, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
+        if (collisionInfo.collider.tag == "Wall")
+        {
+            boom.ShakeHit();
         }
         if (deathTime <= Time.time)
         {
