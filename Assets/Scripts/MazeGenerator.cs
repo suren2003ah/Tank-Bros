@@ -50,15 +50,15 @@ public class MazeGenerator : MonoBehaviour {
 		for (int x = 1; x < GridX + 1; x++) {
 			for (int y = 1; y < GridY + 1; y++) {
 				Vector3 center = transform.position + new Vector3((x) * Walldistance, 2.2f, (y - 0.5f) * Walldistance);
-				if (x == player1.x && y == player1.y) {
+				if (Player1 && x == player1.x && y == player1.y) {
 					Player1.position = center;
 					Player1.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
 				}
-				if (x == player2.x && y == player2.y) {
+				if (Player2 && x == player2.x && y == player2.y) {
 					Player2.position = center;
 					Player2.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
 				}
-				if (x == player3.x && y == player3.y) {
+				if (Player3 && x == player3.x && y == player3.y) {
 					Player3.position = center;
 					Player3.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
 				}
