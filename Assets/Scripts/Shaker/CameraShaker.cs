@@ -3,6 +3,13 @@ using System.Collections.Generic;
 
 namespace EZCameraShake {
 	[AddComponentMenu("EZ Camera Shake/Camera Shaker")]
+
+	[System.Serializable]
+	public struct ShakeParams {
+		public float magnitude, roughness, fadeIn, fadeOut;
+	};
+
+
 	public class CameraShaker : MonoBehaviour {
 		/// <summary>
 		/// The single instance of the CameraShaker in the current scene. Do not use if you have multiple instances.
@@ -31,13 +38,12 @@ namespace EZCameraShake {
 
 		List<CameraShakeInstance> cameraShakeInstances = new List<CameraShakeInstance>();
 
-		public Vector4 die;
-		public Vector4 bounce;
-		public Vector4 shoot;
+		public ShakeParams die;
+		public ShakeParams bounce;
+		public ShakeParams shoot;
 
-
-		public static void Shake(Vector4 parameters){
-			Instance.ShakeOnce(parameters.x, parameters.y, parameters.z, parameters.w);
+		public static void Shake(ShakeParams parameters) {
+			Instance.ShakeOnce(parameters.magnitude, parameters.roughness, parameters.fadeIn, parameters.fadeOut);
 		}
 
 		void Awake() {
