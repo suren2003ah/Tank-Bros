@@ -1200,17 +1200,17 @@ MonoBehaviour:
   RestPositionOffset: {x: 0, y: 0, z: 0}
   RestRotationOffset: {x: 0, y: 0, z: 0}
   die:
-    magnitude: 13
+    magnitude: 1
     roughness: 5
     fadeIn: 0.3
     fadeOut: 2
   bounce:
-    magnitude: 1
+    magnitude: 0.1
     roughness: 2
     fadeIn: 0.1
     fadeOut: 0.5
   shoot:
-    magnitude: 5
+    magnitude: 0.5
     roughness: 3
     fadeIn: 0.2
     fadeOut: 0.6
