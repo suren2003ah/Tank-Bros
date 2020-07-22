@@ -1711,7 +1711,7 @@ MonoBehaviour:
     type: 3}
   forwardForce: 500
   turnForce: 200
-  playerNumber: 2
+  playerNumber: 1
   shooting: {fileID: 5562933852507495123}
 --- !u!54 &8551694541541943731
 Rigidbody:
