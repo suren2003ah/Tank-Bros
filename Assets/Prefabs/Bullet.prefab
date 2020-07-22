@@ -131,6 +131,7 @@ MonoBehaviour:
   player: {fileID: 0}
   shoot: {fileID: 8300000, guid: 142c6498a4f18dc49a8bc9c48e5772d7, type: 3}
   hit: {fileID: 8300000, guid: 02cd68cefba2114468f8a0cc8fbe28c5, type: 3}
+  shakeMultiplier: 0.65
 --- !u!96 &7613848881238375442
 TrailRenderer:
   serializedVersion: 2
