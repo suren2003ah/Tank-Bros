@@ -1608,6 +1608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 2062715748266572357, guid: 9a75663e5b798f94285658b18963f6e6, type: 3}
+  Mine: {fileID: 6621730982611279767, guid: cd2e6487b2353ea44a12428b55ada301, type: 3}
   bulletSpeed: 50
 --- !u!1 &8551694540584690973
 GameObject:
@@ -1709,6 +1710,9 @@ MonoBehaviour:
     type: 3}
   MovingPlayer2: {fileID: 8789262764405782626, guid: 70fd4c1e10207eb4983caa22addee1dd,
     type: 3}
+  ParticleDeath: {fileID: 1442424869331288428, guid: acc7a935ef4db31489c2551aea2cbc7d,
+    type: 3}
+  Mine: {fileID: 6621730982611279767, guid: cd2e6487b2353ea44a12428b55ada301, type: 3}
   forwardForce: 500
   turnForce: 200
   playerNumber: 1

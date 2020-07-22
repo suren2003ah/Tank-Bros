@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 public class Player : MonoBehaviour {
 	// Start is called before the first frame update
 	private Rigidbody rb;
 	private Transform playerPos;
 	public GameObject MovingPlayer1;
 	public GameObject MovingPlayer2;
+	public GameObject ParticleDeath;
 	public float forwardForce;
 	public float turnForce;
 	public int playerNumber;
 	public Shooting shooting;
+	private int shootMode = 0;
 	private float initialForwardForce;
 	void Start() {
 		playerPos = GetComponent<Transform>();
 		rb = GetComponent<Rigidbody>();
 	}
-	IEnumerator PowerUp(GameObject player)
+	IEnumerator SpeedPowerUp(GameObject powerup)
     {
 		initialForwardForce = forwardForce;
 		forwardForce *= 2;
-		Destroy(player);
+		Destroy(powerup);
 		yield return new WaitForSeconds(10f);
 		forwardForce = initialForwardForce;
 	}
@@ -27,22 +30,36 @@ public class Player : MonoBehaviour {
     {
         if (collisionInfo.collider.tag == "SpeedPowerUp")
         {
-			StartCoroutine(PowerUp(collisionInfo.collider.gameObject));
+			StartCoroutine(SpeedPowerUp(collisionInfo.collider.gameObject));
         }
+		if (collisionInfo.collider.tag == "MinePowerUp")
+        {
+			shootMode = 1;
+			Destroy(collisionInfo.collider.gameObject);
+		}
+		if (collisionInfo.collider.tag == "Mine")
+        {
+			Destroy(collisionInfo.collider.gameObject);
+			gameObject.SetActive(false);
+			Instantiate(ParticleDeath, transform.position, Quaternion.identity);
+		}
     }
     // Update is called once per frame
     void Update() {
 		if (playerNumber == 1) {
 			if (Input.GetKeyDown("space")) {
-				shooting.Shoot();
+				shooting.Shoot(shootMode);
+				shootMode = 0;
 			}
 		} else if (playerNumber == 2) {
-			if (Input.GetKeyDown("/")) {
-				shooting.Shoot();
+			if (Input.GetKeyDown("/")) {	
+				shooting.Shoot(shootMode);
+				shootMode = 0;
 			}
 		} else if (playerNumber == 3) {
 			if (Input.GetMouseButtonDown(0)) {
-				shooting.Shoot();
+				shooting.Shoot(shootMode);
+				shootMode = 0;
 			}
 		}
 	}
