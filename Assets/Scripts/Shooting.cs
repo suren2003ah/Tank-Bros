@@ -18,7 +18,7 @@ public class Shooting : MonoBehaviour
             instBullet.GetComponent<Bullet>().player = GetComponentInParent<Player>();
             Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
             instBulletRigidbody.AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
-            CameraShaker.Instance.ShakeOnce(3f, 4f, 0.1f, 1f);
+			CameraShaker.Shake(CameraShaker.Instance.shoot);
         }
     }
     IEnumerator BombPlant()

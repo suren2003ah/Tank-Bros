@@ -31,6 +31,15 @@ namespace EZCameraShake {
 
 		List<CameraShakeInstance> cameraShakeInstances = new List<CameraShakeInstance>();
 
+		public Vector4 die;
+		public Vector4 bounce;
+		public Vector4 shoot;
+
+
+		public static void Shake(Vector4 parameters){
+			Instance.ShakeOnce(parameters.x, parameters.y, parameters.z, parameters.w);
+		}
+
 		void Awake() {
 			Instance = this;
 			instanceList.Add(gameObject.name, this);
@@ -74,6 +83,9 @@ namespace EZCameraShake {
 
 			return null;
 		}
+
+
+
 
 		/// <summary>
 		/// Starts a shake using the given preset.

@@ -1199,6 +1199,9 @@ MonoBehaviour:
   DefaultRotInfluence: {x: 1, y: 1, z: 1}
   RestPositionOffset: {x: 0, y: 0, z: 0}
   RestRotationOffset: {x: 0, y: 0, z: 0}
+  die: {x: 13, y: 5, z: 0.3, w: 2}
+  bounce: {x: 1, y: 2, z: 0.1, w: 0.5}
+  shoot: {x: 3, y: 4, z: 0.1, w: 1}
 --- !u!114 &1006948829
 MonoBehaviour:
   m_ObjectHideFlags: 0
