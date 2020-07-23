@@ -38,6 +38,7 @@ public class MazeGenerator : MonoBehaviour {
 			Destroy(wall);
 			wall.SetActive(false);
 		}
+		// Remove all mines
 		foreach (GameObject mine in GameObject.FindGameObjectsWithTag("Mine")) {
 			Destroy(mine);
 		}
@@ -156,11 +157,12 @@ public class MazeGenerator : MonoBehaviour {
 	//At this point after what Suren has done to the code I don't care about
 	//performance anymore, I just want this shit to be maintainable
 	void FixedUpdate() {
-		if (Random.Range(0f, 1f) <= (1 / 50f) / 8f) { // About one in every 8 seconds
-			Vector2 coords = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
-			GameObject powerup = powerups[Random.Range(0, powerups.Length)];
-			spawnedPowerups.Add(SpawnAtCoordinates(powerup, coords));
-		}
+		if (spawnedPowerups.Count < 3)
+			if (Random.Range(0f, 1f) <= (1 / 50f) / 8f) { // About one in every 8 seconds
+				Vector2 coords = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
+				GameObject powerup = powerups[Random.Range(0, powerups.Length)];
+				spawnedPowerups.Add(SpawnAtCoordinates(powerup, coords));
+			}
 	}
 
 	IEnumerator Reload(float time) {
