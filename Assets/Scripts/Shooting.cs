@@ -6,16 +6,19 @@ public class Shooting : MonoBehaviour
     public GameObject Bullet;
     public GameObject Mine;
     public float bulletSpeed;
-    public void Shoot(int shootMode)
+    public int shootMode = 0;
+    public void Shoot()
     {
         if (shootMode == 1)
         {
             StartCoroutine(BombPlant());
+            shootMode = 0;
         }
         else if (shootMode == 0)
         {
             GameObject instBullet = Instantiate(Bullet, transform.position, Quaternion.identity) as GameObject;
             instBullet.GetComponent<Bullet>().player = GetComponentInParent<Player>();
+            instBullet.GetComponent<Bullet>().shooting = GetComponentInParent<Shooting>();
             Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
             instBulletRigidbody.AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
 			CameraShaker.Shake(CameraShaker.Instance.shoot);

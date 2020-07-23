@@ -9,6 +9,7 @@ public class MazeGenerator : MonoBehaviour {
 	public Transform Player1;
 	public Transform Player2;
 	public Transform Player3;
+	public Shooting shooting;
 	public float Walldistance;
 	private int GridX, GridY;
 	public float balanceCoefficient;
@@ -23,11 +24,16 @@ public class MazeGenerator : MonoBehaviour {
 	}
 
 	void GenerateMaze() {
+		shooting.shootMode = 0;
 		//Remove all walls from previous game
 		foreach (GameObject wall in GameObject.FindGameObjectsWithTag("Wall")) {
 			Destroy(wall);
 			wall.SetActive(false);
 		}
+		foreach (GameObject mine in GameObject.FindGameObjectsWithTag("Mine"))
+        {
+			Destroy(mine);
+        }
 		//Respawn all players
 		if (Player1)
 			Player1.gameObject.SetActive(true);

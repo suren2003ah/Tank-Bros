@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour {
 	private float deathTime;
 	public GameObject ParticleDeath;
 	public Player player;
-
+	public Shooting shooting;
 	private AudioSource audioSrc;
 
 	public AudioClip shoot;
@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour {
 		if (collisionInfo.collider.tag == "Player") {
 			if (alive >= 0.1f || collisionInfo.collider.gameObject != player.gameObject) {
 				collisionInfo.collider.gameObject.SetActive(false);
+				shooting.shootMode = 0;
 				Instantiate(ParticleDeath, transform.position, Quaternion.identity);
 			CameraShaker.Shake(CameraShaker.Instance.die);
 				Destroy(gameObject);

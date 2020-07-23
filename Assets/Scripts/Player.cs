@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
 	public float turnForce;
 	public int playerNumber;
 	public Shooting shooting;
-	private int shootMode = 0;
 	private float initialForwardForce;
 	void Start() {
 		playerPos = GetComponent<Transform>();
@@ -34,7 +33,7 @@ public class Player : MonoBehaviour {
         }
 		if (collisionInfo.collider.tag == "MinePowerUp")
         {
-			shootMode = 1;
+			shooting.shootMode = 1;
 			Destroy(collisionInfo.collider.gameObject);
 		}
 		if (collisionInfo.collider.tag == "Mine")
@@ -42,24 +41,22 @@ public class Player : MonoBehaviour {
 			Destroy(collisionInfo.collider.gameObject);
 			gameObject.SetActive(false);
 			Instantiate(ParticleDeath, transform.position, Quaternion.identity);
+			shooting.shootMode = 0;
 		}
     }
     // Update is called once per frame
     void Update() {
 		if (playerNumber == 1) {
 			if (Input.GetKeyDown("space")) {
-				shooting.Shoot(shootMode);
-				shootMode = 0;
+				shooting.Shoot();
 			}
 		} else if (playerNumber == 2) {
 			if (Input.GetKeyDown("/")) {	
-				shooting.Shoot(shootMode);
-				shootMode = 0;
+				shooting.Shoot();
 			}
 		} else if (playerNumber == 3) {
 			if (Input.GetMouseButtonDown(0)) {
-				shooting.Shoot(shootMode);
-				shootMode = 0;
+				shooting.Shoot();
 			}
 		}
 	}

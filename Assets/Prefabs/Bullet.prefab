@@ -129,6 +129,7 @@ MonoBehaviour:
   ParticleDeath: {fileID: 1442424869331288428, guid: acc7a935ef4db31489c2551aea2cbc7d,
     type: 3}
   player: {fileID: 0}
+  shooting: {fileID: 0}
   shoot: {fileID: 8300000, guid: 142c6498a4f18dc49a8bc9c48e5772d7, type: 3}
   hit: {fileID: 8300000, guid: 02cd68cefba2114468f8a0cc8fbe28c5, type: 3}
   shakeMultiplier: 0.1
