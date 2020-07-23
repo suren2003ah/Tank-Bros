@@ -17,8 +17,12 @@ public class MazeGenerator : MonoBehaviour {
 	private Vector2 player1;
 	private Vector2 player2;
 	private Vector2 player3;
+	private Vector3 bottomLeft;
 
 	private int gameNumber;
+
+	public GameObject[] powerups;
+	private List<GameObject> spawnedPowerups = new List<GameObject>();
 
 	void Start() {
 		GenerateMaze();
@@ -51,10 +55,22 @@ public class MazeGenerator : MonoBehaviour {
 			Destroy(bullet);
 			bullet.SetActive(false);
 		}
+
+
+		//Clear all powerups
+
+		foreach (GameObject b in spawnedPowerups)
+			Destroy(b);
+		spawnedPowerups.Clear();
+
 		gameOver = false;
 
 		GridX = Random.Range(4, 12);
 		GridY = Random.Range(4, 7);
+
+
+		bottomLeft = transform.position - new Vector3(GridX * Walldistance, 0, GridY * Walldistance) * 0.5f;
+
 		int length = 1;
 		for (int u = 0; u < length; u++) {
 			player1 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
@@ -65,7 +81,6 @@ public class MazeGenerator : MonoBehaviour {
 			}
 		}
 
-		Vector3 bottomLeft = transform.position - new Vector3(GridX * Walldistance, 0, GridY * Walldistance) * 0.5f;
 		for (int x = 1; x < GridX + 1; x++) {
 			for (int y = 0; y < GridY + 1; y++) {
 				Instantiate(Wall, bottomLeft + new Vector3(x * Walldistance, 0, y * Walldistance), Quaternion.identity);
@@ -138,8 +153,23 @@ public class MazeGenerator : MonoBehaviour {
 		}
 	}
 
+	//At this point after what Suren has done to the code I don't care about
+	//performance anymore, I just want this shit to be maintainable
+	void FixedUpdate() {
+		if (Random.Range(0f, 1f) <= (1 / 50f) / 8f) { // About one in every 8 seconds
+			Vector2 coords = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
+			GameObject powerup = powerups[Random.Range(0, powerups.Length)];
+			spawnedPowerups.Add(SpawnAtCoordinates(powerup, coords));
+		}
+	}
+
 	IEnumerator Reload(float time) {
 		yield return new WaitForSeconds(time);
 		GenerateMaze();
+	}
+
+	GameObject SpawnAtCoordinates(GameObject obj, Vector2 coords) {
+		Vector3 center = bottomLeft + new Vector3(coords.x * Walldistance, 2.5f, (coords.y - 0.5f) * Walldistance);
+		return Instantiate(obj, center, Quaternion.identity) as GameObject;
 	}
 }
