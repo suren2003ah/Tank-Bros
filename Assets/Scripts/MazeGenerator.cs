@@ -48,7 +48,7 @@ public class MazeGenerator : MonoBehaviour {
 		GridX = Random.Range(4, 12);
 		GridY = Random.Range(4, 7);
 		length = 1;
-		for (int u = 0; u < length; u++) {
+		for (int u = 0; u < length; u++) { 
 			player1 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 			player2 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 			player3 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
