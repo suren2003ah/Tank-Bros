@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour {
 	public Shooting shooting;
 	private AudioSource audioSrc;
 
+	public bool destroy;
+
 	public AudioClip shoot;
 	public AudioClip hit;
 
@@ -18,22 +20,29 @@ public class Bullet : MonoBehaviour {
 	void OnCollisionEnter(Collision collisionInfo) {
 		if (collisionInfo.collider.tag == "Player") {
 			if (alive >= 0.1f || collisionInfo.collider.gameObject != player.gameObject) {
-				collisionInfo.collider.gameObject.SetActive(false);
+				if (!destroy)
+					collisionInfo.collider.gameObject.SetActive(false);
+				else
+					Destroy(collisionInfo.collider.gameObject);
 				shooting.shootMode = 0;
 				Instantiate(ParticleDeath, transform.position, Quaternion.identity);
-			CameraShaker.Shake(CameraShaker.Instance.die);
+				CameraShaker.Shake(CameraShaker.Instance.die);
 				Destroy(gameObject);
 				SoundManager.PlayDie();
 			}
 		} else if (collisionInfo.collider.tag == "Wall") {
 			CameraShaker.Shake(CameraShaker.Instance.bounce);
-			if (Vector3.Distance(transform.position, player.transform.position) <= 7f) {
-				player.gameObject.SetActive(false);
-				CameraShaker.Shake(CameraShaker.Instance.die);
-				Instantiate(ParticleDeath, transform.position, Quaternion.identity);
-				Destroy(gameObject);
-				SoundManager.PlayDie();
-			}
+			if (player)
+				if (Vector3.Distance(transform.position, player.transform.position) <= 7f) {
+					if (!destroy)
+						player.gameObject.SetActive(false);
+					else
+						Destroy(player.gameObject);
+					CameraShaker.Shake(CameraShaker.Instance.die);
+					Instantiate(ParticleDeath, transform.position, Quaternion.identity);
+					Destroy(gameObject);
+					SoundManager.PlayDie();
+				}
 			SoundManager.PlayHit();
 		} else if (collisionInfo.collider.tag == "Bullet") {
 			SoundManager.PlayHit();

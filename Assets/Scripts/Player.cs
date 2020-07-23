@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 	IEnumerator SpeedPowerUp(GameObject powerup)
     {
 		initialForwardForce = forwardForce;
-		forwardForce *= 2;
+		forwardForce *= 1.3f;
 		Destroy(powerup);
 		yield return new WaitForSeconds(10f);
 		forwardForce = initialForwardForce;
@@ -40,8 +40,9 @@ public class Player : MonoBehaviour {
         {
 			Destroy(collisionInfo.collider.gameObject);
 			gameObject.SetActive(false);
-			Instantiate(ParticleDeath, transform.position, Quaternion.identity);
-			shooting.shootMode = 0;
+			Instantiate(ParticleDeath, transform.position, Quaternion.identity);	
+			SoundManager.PlayDie();
+			EZCameraShake.CameraShaker.Shake(EZCameraShake.CameraShaker.Instance.die);
 		}
     }
     // Update is called once per frame

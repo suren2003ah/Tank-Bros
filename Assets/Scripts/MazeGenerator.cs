@@ -17,6 +17,9 @@ public class MazeGenerator : MonoBehaviour {
 	private Vector2 player1;
 	private Vector2 player2;
 	private Vector2 player3;
+
+	private int gameNumber;
+
 	void Start() {
 		GenerateMaze();
 		Cursor.lockState = CursorLockMode.Locked;
@@ -24,16 +27,16 @@ public class MazeGenerator : MonoBehaviour {
 	}
 
 	void GenerateMaze() {
+		gameNumber++;
 		shooting.shootMode = 0;
 		//Remove all walls from previous game
 		foreach (GameObject wall in GameObject.FindGameObjectsWithTag("Wall")) {
 			Destroy(wall);
 			wall.SetActive(false);
 		}
-		foreach (GameObject mine in GameObject.FindGameObjectsWithTag("Mine"))
-        {
+		foreach (GameObject mine in GameObject.FindGameObjectsWithTag("Mine")) {
 			Destroy(mine);
-        }
+		}
 		//Respawn all players
 		if (Player1)
 			Player1.gameObject.SetActive(true);
@@ -53,7 +56,7 @@ public class MazeGenerator : MonoBehaviour {
 		GridX = Random.Range(4, 12);
 		GridY = Random.Range(4, 7);
 		int length = 1;
-		for (int u = 0; u < length; u++) { 
+		for (int u = 0; u < length; u++) {
 			player1 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 			player2 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 			player3 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
@@ -118,13 +121,25 @@ public class MazeGenerator : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 		if (GameObject.FindGameObjectsWithTag("Player").Length <= 1 && !gameOver) {
-			StartCoroutine(Reload());
+			StartCoroutine(Reload(2f));
 			gameOver = true;
+		}
+		if (gameNumber < 2) {
+			foreach (GameObject go in GameObject.FindGameObjectsWithTag("Bullet")) {
+				go.GetComponent<Bullet>().destroy = true;
+			}
+			if (Input.GetKeyDown("p")) {
+				GenerateMaze();
+			}
+			if (GameObject.FindGameObjectsWithTag("Player").Length <= 2 && !gameOver) {
+				StartCoroutine(Reload(0.5f));
+				gameOver = true;
+			}
 		}
 	}
 
-	IEnumerator Reload() {
-		yield return new WaitForSeconds(2f);
+	IEnumerator Reload(float time) {
+		yield return new WaitForSeconds(time);
 		GenerateMaze();
 	}
 }
