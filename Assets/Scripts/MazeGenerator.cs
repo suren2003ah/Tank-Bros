@@ -47,12 +47,12 @@ public class MazeGenerator : MonoBehaviour {
 
 		GridX = Random.Range(4, 12);
 		GridY = Random.Range(4, 7);
-
+		length = 1;
 		for (int u = 0; u < length; u++) {
 			player1 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 			player2 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 			player3 = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
-			if (player1.x == player2.x || player1.x == player3.x || player3.x == player2.x || player1.y == player2.y || player1.y == player3.y || player3.y == player2.y) {
+			if (player1.x == player2.x && player1.y == player2.y || player1.x == player3.x && player1.y == player3.y || player3.x == player2.x && player3.y == player2.y) {
 				length++;
 			}
 		}
