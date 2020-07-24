@@ -2535,11 +2535,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bad6f5fc48c5c5b4581d5f18af08a793, type: 2}
-    - target: {fileID: 5562933852507495123, guid: c6fc3e9c94188dc4eb454506204b8f36,
-        type: 3}
-      propertyPath: bulletSpeed
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 8551694541541943729, guid: c6fc3e9c94188dc4eb454506204b8f36,
         type: 3}
       propertyPath: m_LocalPosition.x

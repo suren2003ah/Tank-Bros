@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Player : MonoBehaviour {
 	// Start is called before the first frame update
@@ -14,25 +13,27 @@ public class Player : MonoBehaviour {
 	public int playerNumber;
 	public Shooting shooting;
 	private float initialForwardForce;
+
+	private float speedTimeout = 0;
+
 	void Start() {
 		playerPos = GetComponent<Transform>();
 		rb = GetComponent<Rigidbody>();
 		shield = gameObject.GetComponentInChildren<Shield>().gameObject;
 		shield.SetActive(false);
-	}
-	IEnumerator SpeedPowerUp(GameObject powerup)
-    {
 		initialForwardForce = forwardForce;
+	}
+	void SpeedPowerUp(GameObject powerup)
+    {
 		forwardForce *= 1.3f;
 		Destroy(powerup);
-		yield return new WaitForSeconds(10f);
-		forwardForce = initialForwardForce;
+		speedTimeout += 10f;
 	}
 	void OnCollisionEnter(Collision collisionInfo)
     {
         if (collisionInfo.collider.tag == "SpeedPowerUp")
         {
-			StartCoroutine(SpeedPowerUp(collisionInfo.collider.gameObject));
+			SpeedPowerUp(collisionInfo.collider.gameObject);
         }
 		if (collisionInfo.collider.tag == "ShieldPowerUp") 
         {
@@ -68,6 +69,13 @@ public class Player : MonoBehaviour {
 			if (Input.GetMouseButtonDown(0)) {
 				shooting.Shoot();
 			}
+		}
+		if(speedTimeout > 0) {
+			speedTimeout-=Time.deltaTime;
+		}
+		else{
+			forwardForce = initialForwardForce;
+			speedTimeout = 0;
 		}
 	}
 	void FixedUpdate() {

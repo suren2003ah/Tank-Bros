@@ -43,30 +43,33 @@ public class MazeGenerator : MonoBehaviour {
 		//Respawn all players
 		if (Player1)
 		{
-			Player1.gameObject.SetActive(true);
+			Player1.SetActive(true);
 			Player1.GetComponentInChildren<Shooting>().shootMode = 0;
 			if (Player1.GetComponentInChildren<Shield>())
             {
 				Player1.GetComponentInChildren<Shield>().gameObject.SetActive(false);
 			}
+			Player1.GetComponent<Player>().shooting.bulletsLeft = 4;
 		}
 		if (Player2)
 		{
-			Player2.gameObject.SetActive(true);
+			Player2.SetActive(true);
 			Player2.GetComponentInChildren<Shooting>().shootMode = 0;
 			if (Player2.GetComponentInChildren<Shield>())
 			{
 				Player2.GetComponentInChildren<Shield>().gameObject.SetActive(false);
 			}
+			Player2.GetComponent<Player>().shooting.bulletsLeft = 4;
 		}
 		if (Player3)
         {
-			Player3.gameObject.SetActive(true);
+			Player3.SetActive(true);
 			Player3.GetComponentInChildren<Shooting>().shootMode = 0;
 			if (Player3.GetComponentInChildren<Shield>())
 			{
 				Player3.GetComponentInChildren<Shield>().gameObject.SetActive(false);
 			}
+			Player3.GetComponent<Player>().shooting.bulletsLeft = 4;
 		}
 
 		//Remove all bullets from last game
