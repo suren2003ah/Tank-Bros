@@ -15,8 +15,9 @@ public class Shooting : MonoBehaviour
             StartCoroutine(BombPlant());
             shootMode = 0;
         }
-        else if (shootMode == 0 && bulletsLeft-- > 0)
+        else if (shootMode == 0 && bulletsLeft > 0)
         {
+			bulletsLeft--;
             GameObject instBullet = Instantiate(Bullet, transform.position, Quaternion.identity) as GameObject;
             instBullet.GetComponent<Bullet>().player = GetComponentInParent<Player>();
             instBullet.GetComponent<Bullet>().shooting = this; 
