@@ -47,9 +47,12 @@ public class Bullet : MonoBehaviour {
 		} else if (collisionInfo.collider.tag == "Bullet") {
 			SoundManager.PlayHit();
 		}
-		else if (collisionInfo.collider.tag == "Shield")
+		else if (collisionInfo.collider.tag == "MinePowerUp" || collisionInfo.collider.tag == "SpeedPowerUp" || collisionInfo.collider.tag == "ShieldPowerUp")
         {
+			Destroy(collisionInfo.collider.gameObject);
+			Destroy(gameObject);
 			CameraShaker.Shake(CameraShaker.Instance.bounce);
+			Instantiate(ParticleDeath, transform.position, Quaternion.identity);
 			SoundManager.PlayDie();
 		}
 
