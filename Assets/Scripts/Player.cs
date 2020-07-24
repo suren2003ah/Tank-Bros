@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	public GameObject MovingPlayer1;
 	public GameObject MovingPlayer2;
 	public GameObject ParticleDeath;
+	private GameObject shield;
 	public float forwardForce;
 	public float turnForce;
 	public int playerNumber;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour {
 	void Start() {
 		playerPos = GetComponent<Transform>();
 		rb = GetComponent<Rigidbody>();
+		shield = gameObject.GetComponentInChildren<Shield>().gameObject;
+		shield.SetActive(false);
 	}
 	IEnumerator SpeedPowerUp(GameObject powerup)
     {
@@ -31,6 +34,11 @@ public class Player : MonoBehaviour {
         {
 			StartCoroutine(SpeedPowerUp(collisionInfo.collider.gameObject));
         }
+		if (collisionInfo.collider.tag == "ShieldPowerUp") 
+        {
+			shield.SetActive(true);
+			Destroy(collisionInfo.collider.gameObject);
+		}
 		if (collisionInfo.collider.tag == "MinePowerUp")
         {
 			shooting.shootMode = 1;
@@ -40,6 +48,7 @@ public class Player : MonoBehaviour {
         {
 			Destroy(collisionInfo.collider.gameObject);
 			gameObject.SetActive(false);
+			shooting.shootMode = 0;
 			Instantiate(ParticleDeath, transform.position, Quaternion.identity);	
 			SoundManager.PlayDie();
 			EZCameraShake.CameraShaker.Shake(EZCameraShake.CameraShaker.Instance.die);

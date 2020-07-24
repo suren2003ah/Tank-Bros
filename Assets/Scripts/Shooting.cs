@@ -18,7 +18,7 @@ public class Shooting : MonoBehaviour
         {
             GameObject instBullet = Instantiate(Bullet, transform.position, Quaternion.identity) as GameObject;
             instBullet.GetComponent<Bullet>().player = GetComponentInParent<Player>();
-            instBullet.GetComponent<Bullet>().shooting = GetComponentInParent<Shooting>();
+            instBullet.GetComponent<Bullet>().shooting = GetComponent<Shooting>();
             Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
             instBulletRigidbody.AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
 			CameraShaker.Shake(CameraShaker.Instance.shoot);

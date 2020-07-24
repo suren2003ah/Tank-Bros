@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour {
 	private float deathTime;
 	public GameObject ParticleDeath;
 	public Player player;
+	public GameObject Shield;
 	public Shooting shooting;
 	private AudioSource audioSrc;
 
@@ -13,7 +14,7 @@ public class Bullet : MonoBehaviour {
 	public AudioClip shoot;
 	public AudioClip hit;
 
-	private float alive;
+	public float alive;
 
 	public float shakeMultiplier = 1f;
 
@@ -24,7 +25,6 @@ public class Bullet : MonoBehaviour {
 					collisionInfo.collider.gameObject.SetActive(false);
 				else
 					Destroy(collisionInfo.collider.gameObject);
-				shooting.shootMode = 0;
 				Instantiate(ParticleDeath, transform.position, Quaternion.identity);
 				CameraShaker.Shake(CameraShaker.Instance.die);
 				Destroy(gameObject);
@@ -46,6 +46,11 @@ public class Bullet : MonoBehaviour {
 			SoundManager.PlayHit();
 		} else if (collisionInfo.collider.tag == "Bullet") {
 			SoundManager.PlayHit();
+		}
+		else if (collisionInfo.collider.tag == "Shield")
+        {
+			CameraShaker.Shake(CameraShaker.Instance.bounce);
+			SoundManager.PlayDie();
 		}
 
 		if (deathTime <= Time.time) {

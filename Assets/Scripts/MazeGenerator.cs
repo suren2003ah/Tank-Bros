@@ -6,10 +6,9 @@ public class MazeGenerator : MonoBehaviour {
 
 	public GameObject Wall;
 	public GameObject ball;
-	public Transform Player1;
-	public Transform Player2;
-	public Transform Player3;
-	public Shooting shooting;
+	public GameObject Player1;
+	public GameObject Player2;
+	public GameObject Player3;
 	public float Walldistance;
 	private int GridX, GridY;
 	public float balanceCoefficient;
@@ -32,7 +31,6 @@ public class MazeGenerator : MonoBehaviour {
 
 	void GenerateMaze() {
 		gameNumber++;
-		shooting.shootMode = 0;
 		//Remove all walls from previous game
 		foreach (GameObject wall in GameObject.FindGameObjectsWithTag("Wall")) {
 			Destroy(wall);
@@ -44,11 +42,32 @@ public class MazeGenerator : MonoBehaviour {
 		}
 		//Respawn all players
 		if (Player1)
+		{
 			Player1.gameObject.SetActive(true);
+			Player1.GetComponentInChildren<Shooting>().shootMode = 0;
+			if (Player1.GetComponentInChildren<Shield>())
+            {
+				Player1.GetComponentInChildren<Shield>().gameObject.SetActive(false);
+			}
+		}
 		if (Player2)
+		{
 			Player2.gameObject.SetActive(true);
+			Player2.GetComponentInChildren<Shooting>().shootMode = 0;
+			if (Player2.GetComponentInChildren<Shield>())
+			{
+				Player2.GetComponentInChildren<Shield>().gameObject.SetActive(false);
+			}
+		}
 		if (Player3)
+        {
 			Player3.gameObject.SetActive(true);
+			Player3.GetComponentInChildren<Shooting>().shootMode = 0;
+			if (Player3.GetComponentInChildren<Shield>())
+			{
+				Player3.GetComponentInChildren<Shield>().gameObject.SetActive(false);
+			}
+		}
 
 		//Remove all bullets from last game
 
@@ -100,16 +119,16 @@ public class MazeGenerator : MonoBehaviour {
 			for (int y = 1; y < GridY + 1; y++) {
 				Vector3 center = bottomLeft + new Vector3((x) * Walldistance, 2.2f, (y - 0.5f) * Walldistance);
 				if (Player1 && x == player1.x && y == player1.y) {
-					Player1.position = center;
-					Player1.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
+					Player1.transform.position = center;
+					Player1.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
 				}
 				if (Player2 && x == player2.x && y == player2.y) {
-					Player2.position = center;
-					Player2.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
+					Player2.transform.position = center;
+					Player2.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
 				}
 				if (Player3 && x == player3.x && y == player3.y) {
-					Player3.position = center;
-					Player3.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
+					Player3.transform.position = center;
+					Player3.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
 				}
 
 				Vector3[] directions = { Vector3.forward, Vector3.back, Vector3.right };

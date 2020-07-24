@@ -10,6 +10,8 @@ TagManager:
   - SpeedPowerUp
   - MinePowerUp
   - Mine
+  - ShieldPowerUp
+  - Shield
   layers:
   - Default
   - TransparentFX
