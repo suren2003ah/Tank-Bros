@@ -41,32 +41,26 @@ public class MazeGenerator : MonoBehaviour {
 			Destroy(mine);
 		}
 		//Respawn all players
-		if (Player1)
-		{
+		if (Player1) {
 			Player1.SetActive(true);
 			Player1.GetComponentInChildren<Shooting>().shootMode = 0;
-			if (Player1.GetComponentInChildren<Shield>())
-            {
+			if (Player1.GetComponentInChildren<Shield>()) {
 				Player1.GetComponentInChildren<Shield>().gameObject.SetActive(false);
 			}
 			Player1.GetComponent<Player>().shooting.bulletsLeft = 4;
 		}
-		if (Player2)
-		{
+		if (Player2) {
 			Player2.SetActive(true);
 			Player2.GetComponentInChildren<Shooting>().shootMode = 0;
-			if (Player2.GetComponentInChildren<Shield>())
-			{
+			if (Player2.GetComponentInChildren<Shield>()) {
 				Player2.GetComponentInChildren<Shield>().gameObject.SetActive(false);
 			}
 			Player2.GetComponent<Player>().shooting.bulletsLeft = 4;
 		}
-		if (Player3)
-        {
+		if (Player3) {
 			Player3.SetActive(true);
 			Player3.GetComponentInChildren<Shooting>().shootMode = 0;
-			if (Player3.GetComponentInChildren<Shield>())
-			{
+			if (Player3.GetComponentInChildren<Shield>()) {
 				Player3.GetComponentInChildren<Shield>().gameObject.SetActive(false);
 			}
 			Player3.GetComponent<Player>().shooting.bulletsLeft = 4;
@@ -179,12 +173,13 @@ public class MazeGenerator : MonoBehaviour {
 	//At this point after what Suren has done to the code I don't care about
 	//performance anymore, I just want this shit to be maintainable
 	void FixedUpdate() {
-		if (spawnedPowerups.Count < 3)
-			if (Random.Range(0f, 1f) <= (1 / 50f) / 8f) { // About one in every 8 seconds
-				Vector2 coords = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
-				GameObject powerup = powerups[Random.Range(0, powerups.Length)];
-				spawnedPowerups.Add(SpawnAtCoordinates(powerup, coords));
-			}
+		if (gameNumber > 2)
+			if (spawnedPowerups.Count < 3)
+				if (Random.Range(0f, 1f) <= (1 / 50f) / 8f) { // About one in every 8 seconds
+					Vector2 coords = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
+					GameObject powerup = powerups[Random.Range(0, powerups.Length)];
+					spawnedPowerups.Add(SpawnAtCoordinates(powerup, coords));
+				}
 	}
 
 	IEnumerator Reload(float time) {
