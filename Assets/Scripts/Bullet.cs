@@ -28,7 +28,6 @@ public class Bullet : MonoBehaviour {
 				Instantiate(ParticleDeath, transform.position, Quaternion.identity);
 				CameraShaker.Shake(CameraShaker.Instance.die);
 				Destroy(gameObject);
-				shooting.bulletsLeft++;
 				SoundManager.PlayDie();
 			}
 		} else if (collisionInfo.collider.tag == "Wall") {
@@ -42,7 +41,6 @@ public class Bullet : MonoBehaviour {
 					CameraShaker.Shake(CameraShaker.Instance.die);
 					Instantiate(ParticleDeath, transform.position, Quaternion.identity);
 					Destroy(gameObject);
-					shooting.bulletsLeft++;
 					SoundManager.PlayDie();
 				}
 			SoundManager.PlayHit();
@@ -51,7 +49,6 @@ public class Bullet : MonoBehaviour {
 		} else if (collisionInfo.collider.tag == "MinePowerUp" || collisionInfo.collider.tag == "SpeedPowerUp" || collisionInfo.collider.tag == "ShieldPowerUp") {
 			Destroy(collisionInfo.collider.gameObject);
 			Destroy(gameObject);
-			shooting.bulletsLeft++;
 			CameraShaker.Shake(CameraShaker.Instance.bounce);
 			Instantiate(ParticleDeath, transform.position, Quaternion.identity);
 			SoundManager.PlayDie();
@@ -59,7 +56,6 @@ public class Bullet : MonoBehaviour {
 
 		if (deathTime <= Time.time) {
 			Destroy(gameObject);
-			shooting.bulletsLeft++;
 		}
 	}
 	void Start() {
@@ -69,5 +65,8 @@ public class Bullet : MonoBehaviour {
 	}
 	void Update() {
 		alive += Time.deltaTime;
+	}
+	void OnDestroy(){
+		shooting.bulletsLeft++;
 	}
 }
