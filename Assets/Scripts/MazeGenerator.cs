@@ -23,6 +23,8 @@ public class MazeGenerator : MonoBehaviour {
 	public GameObject[] powerups;
 	private List<GameObject> spawnedPowerups = new List<GameObject>();
 
+	public int bulletCount = 6;
+
 	void Start() {
 		GenerateMaze();
 		Cursor.lockState = CursorLockMode.Locked;
@@ -31,6 +33,7 @@ public class MazeGenerator : MonoBehaviour {
 
 	void GenerateMaze() {
 		gameNumber++;
+
 		//Remove all walls from previous game
 		foreach (GameObject wall in GameObject.FindGameObjectsWithTag("Wall")) {
 			Destroy(wall);
@@ -63,12 +66,17 @@ public class MazeGenerator : MonoBehaviour {
 			}
 		}
 
-		//Remove all bullets from last game
 
-		foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Bullet")) {
-			Destroy(bullet);
+		//Set max bullets
+		if (gameNumber == 2) {
+			bulletCount = GameObject.FindGameObjectsWithTag("Player").Length * 2;
 		}
 
+		//Remove all bullets from last game
+		foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Bullet")) {
+			Destroy(bullet);
+			if (gameNumber == 2) bulletCount--;
+		}
 
 		//Clear all powerups
 

@@ -66,7 +66,9 @@ public class Bullet : MonoBehaviour {
 	void Update() {
 		alive += Time.deltaTime;
 	}
-	void OnDestroy(){
-		shooting.bulletsLeft++;
+	void OnDestroy() {
+		//if (shooting)
+			shooting.bulletsLeft++;
+		GameObject.FindObjectOfType<MazeGenerator>().bulletCount++;
 	}
 }
