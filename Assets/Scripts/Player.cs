@@ -16,11 +16,14 @@ public class Player : MonoBehaviour {
 
 	private float speedTimeout = 0;
 
+	void Awake(){
+		shield = gameObject.GetComponentInChildren<Shield>().gameObject;
+		shield.SetActive(false);
+	}
+
 	void Start() {
 		playerPos = GetComponent<Transform>();
 		rb = GetComponent<Rigidbody>();
-		shield = gameObject.GetComponentInChildren<Shield>().gameObject;
-		shield.SetActive(false);
 		initialForwardForce = forwardForce;
 	}
 	void SpeedPowerUp(GameObject powerup)
