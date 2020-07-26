@@ -1454,6 +1454,7 @@ MonoBehaviour:
   shoot: {fileID: 8300000, guid: 142c6498a4f18dc49a8bc9c48e5772d7, type: 3}
   hit: {fileID: 8300000, guid: 0391254fdb0dbe34b8f24eb2bdce0901, type: 3}
   die: {fileID: 8300000, guid: 02cd68cefba2114468f8a0cc8fbe28c5, type: 3}
+  powerup: {fileID: 8300000, guid: ba824d8c83ac2f34b97ce68a84085345, type: 3}
 --- !u!82 &1204707487
 AudioSource:
   m_ObjectHideFlags: 0

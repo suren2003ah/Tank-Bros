@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip shoot;
 	public AudioClip hit;
 	public AudioClip die;
+	public AudioClip powerup;
 
 	static SoundManager mgr;
 
@@ -30,6 +31,10 @@ public class SoundManager : MonoBehaviour {
 	public static void PlayDie() {
 		mgr.RandomPitch();
 		mgr.src.PlayOneShot(mgr.die);
+	}
+	public static void PlayPowerup() {
+		mgr.RandomPitch();
+		mgr.src.PlayOneShot(mgr.powerup);
 	}
 
 }
