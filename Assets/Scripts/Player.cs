@@ -38,16 +38,19 @@ public class Player : MonoBehaviour {
         if (collisionInfo.collider.tag == "SpeedPowerUp")
         {
 			SpeedPowerUp(collisionInfo.collider.gameObject);
+			SoundManager.PlayPowerup();
         }
 		if (collisionInfo.collider.tag == "ShieldPowerUp") 
         {
 			shield.SetActive(true);
 			Destroy(collisionInfo.collider.gameObject);
+			SoundManager.PlayPowerup();
 		}
 		if (collisionInfo.collider.tag == "MinePowerUp")
         {
 			shooting.shootMode = 1;
 			Destroy(collisionInfo.collider.gameObject);
+			SoundManager.PlayPowerup();
 		}
 		if (collisionInfo.collider.tag == "Mine")
         {
