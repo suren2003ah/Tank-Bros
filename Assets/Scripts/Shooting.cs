@@ -32,9 +32,9 @@ public class Shooting : MonoBehaviour {
 			instBullet.GetComponent<Bullet>().player = GetComponentInParent<Player>();
 			instBullet.GetComponent<Bullet>().shooting = this;
 			Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
-			instBulletRigidbody.AddForce(transform.forward * bulletSpeed * 5, ForceMode.VelocityChange);
+			instBulletRigidbody.AddForce(transform.forward * bulletSpeed * 10, ForceMode.VelocityChange);
 			CameraShaker.Shake(CameraShaker.Instance.shoot);
-			gameObject.layer = 10;
+			gameObject.layer = 12;
 			shootMode = 0;
         }
 	}
