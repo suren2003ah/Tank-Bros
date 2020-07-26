@@ -29,6 +29,7 @@ public class Shooting : MonoBehaviour {
 		else if (shootMode == 2)
         {
 			GameObject instBullet = Instantiate(Bullet, transform.position, Quaternion.identity) as GameObject;
+			instBullet.GetComponent<MeshRenderer>().enabled = false;
 			instBullet.GetComponent<Bullet>().player = GetComponentInParent<Player>();
 			instBullet.GetComponent<Bullet>().shooting = this;
 			Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();

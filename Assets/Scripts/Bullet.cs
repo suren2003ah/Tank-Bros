@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour {
 
 	public float alive;
 
+	private bool lazer;
 	public float shakeMultiplier = 1f;
 
 	void OnCollisionEnter(Collision collisionInfo) {
@@ -43,7 +44,8 @@ public class Bullet : MonoBehaviour {
 					Destroy(gameObject);
 					SoundManager.PlayDie();
 				}
-			SoundManager.PlayHit();
+			if (lazer)
+				SoundManager.PlayHit();
 		} else if (collisionInfo.collider.tag == "Bullet" && player.GetComponentInChildren<Shooting>().shootMode != 2) {
 			SoundManager.PlayHit();
 			Debug.Log("Collision");
@@ -63,13 +65,14 @@ public class Bullet : MonoBehaviour {
 		deathTime = Time.time + lifeTime;
 		audioSrc = GetComponent<AudioSource>();
 		SoundManager.PlayShoot();
+		lazer = GetComponent<MeshRenderer>() == null;
 	}
 	void Update() {
 		alive += Time.deltaTime;
 	}
 	void OnDestroy() {
 		//if (shooting)
-			shooting.bulletsLeft++;
+		shooting.bulletsLeft++;
 		GameObject.FindObjectOfType<MazeGenerator>().bulletCount++;
 	}
 }
