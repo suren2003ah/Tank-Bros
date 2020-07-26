@@ -54,6 +54,7 @@ public class Player : MonoBehaviour {
 		if (collisionInfo.collider.tag == "LazerPowerUp")
         {
 			Lazer(collisionInfo.collider.gameObject);
+			SoundManager.PlayPowerup();
         }
 		if (collisionInfo.collider.tag == "MinePowerUp")
         {
