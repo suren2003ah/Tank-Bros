@@ -179,7 +179,7 @@ public class MazeGenerator : MonoBehaviour {
 	void FixedUpdate() {
 		if (gameNumber >= 2)
 			if (spawnedPowerups.Count < 3)
-				if (Random.Range(0f, 1f) <= (1 / 50f) / 8f) { // About one in every 8 seconds
+				if (Random.Range(0f, 1f) <= (1 / 50f) / 4f) { // About one in every 8 seconds
 					Vector2 coords = new Vector2(Random.Range(1, GridX + 1), Random.Range(1, GridY + 1));
 					GameObject powerup = powerups[Random.Range(0, powerups.Length)];
 					spawnedPowerups.Add(SpawnAtCoordinates(powerup, coords));
