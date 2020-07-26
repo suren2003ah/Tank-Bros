@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using EZCameraShake;
-using System.Collections;
 public class Shooting : MonoBehaviour {
 	public GameObject Bullet;
 	public GameObject Mine;
@@ -14,7 +13,8 @@ public class Shooting : MonoBehaviour {
 
 	public void Shoot() {
 		if (shootMode == 1) {
-			StartCoroutine(BombPlant());
+			GameObject mine = Instantiate(Mine, transform.position - transform.forward * 12, Quaternion.identity);
+			mine.GetComponent<Rigidbody>().AddForce(-transform.forward * bulletSpeed, ForceMode.VelocityChange);
 			shootMode = 0;
 		} else if (shootMode == 0 && bulletsLeft > 0 && mg.bulletCount > 0) {
 			bulletsLeft--;
@@ -38,10 +38,5 @@ public class Shooting : MonoBehaviour {
 			gameObject.layer = 12;
 			shootMode = 0;
         }
-	}
-	IEnumerator BombPlant() {
-		Vector3 initialPos = transform.position;
-		yield return new WaitForSeconds(1f);
-		Instantiate(Mine, initialPos, Quaternion.identity);
 	}
 }
