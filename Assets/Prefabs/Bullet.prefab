@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4814219050001086421}
   - component: {fileID: 7613848881238375442}
   - component: {fileID: 2808839896581485291}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -134,6 +134,7 @@ MonoBehaviour:
   destroy: 0
   shoot: {fileID: 8300000, guid: 142c6498a4f18dc49a8bc9c48e5772d7, type: 3}
   hit: {fileID: 8300000, guid: 02cd68cefba2114468f8a0cc8fbe28c5, type: 3}
+  alive: 0
   shakeMultiplier: 0.1
 --- !u!96 &7613848881238375442
 TrailRenderer:

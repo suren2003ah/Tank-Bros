@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Player : MonoBehaviour {
 	// Start is called before the first frame update
@@ -32,21 +33,33 @@ public class Player : MonoBehaviour {
 		Destroy(powerup);
 		speedTimeout += 10f;
 	}
+	void Lazer(GameObject powerup)
+    {
+		shooting.shootMode = 2;
+		Destroy(powerup);
+	}
 	void OnCollisionEnter(Collision collisionInfo)
     {
         if (collisionInfo.collider.tag == "SpeedPowerUp")
         {
 			SpeedPowerUp(collisionInfo.collider.gameObject);
+			SoundManager.PlayPowerup();
         }
 		if (collisionInfo.collider.tag == "ShieldPowerUp") 
         {
 			shield.SetActive(true);
 			Destroy(collisionInfo.collider.gameObject);
+			SoundManager.PlayPowerup();
 		}
+		if (collisionInfo.collider.tag == "LazerPowerUp")
+        {
+			Lazer(collisionInfo.collider.gameObject);
+        }
 		if (collisionInfo.collider.tag == "MinePowerUp")
         {
 			shooting.shootMode = 1;
 			Destroy(collisionInfo.collider.gameObject);
+			SoundManager.PlayPowerup();
 		}
 		if (collisionInfo.collider.tag == "Mine")
         {
@@ -80,6 +93,10 @@ public class Player : MonoBehaviour {
 			forwardForce = initialForwardForce;
 			speedTimeout = 0;
 		}
+        if (Input.GetKeyDown("r"))
+        {
+			StartCoroutine(RickRoll());
+        }
 	}
 	void FixedUpdate() {
 		if (playerNumber == 1) {
@@ -119,4 +136,10 @@ public class Player : MonoBehaviour {
 			rb.AddTorque(0, input * turnForce, 0);
 		}
 	}
+	IEnumerator RickRoll()
+    {
+		GetComponent<AudioSource>().Play();
+		yield return new WaitForSeconds(18.5f);
+		GetComponent<AudioSource>().Stop();
+    }
 }

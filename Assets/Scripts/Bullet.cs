@@ -44,8 +44,9 @@ public class Bullet : MonoBehaviour {
 					SoundManager.PlayDie();
 				}
 			SoundManager.PlayHit();
-		} else if (collisionInfo.collider.tag == "Bullet") {
+		} else if (collisionInfo.collider.tag == "Bullet" && player.GetComponentInChildren<Shooting>().shootMode != 2) {
 			SoundManager.PlayHit();
+			Debug.Log("Collision");
 		} else if (collisionInfo.collider.tag == "MinePowerUp" || collisionInfo.collider.tag == "SpeedPowerUp" || collisionInfo.collider.tag == "ShieldPowerUp") {
 			Destroy(collisionInfo.collider.gameObject);
 			Destroy(gameObject);

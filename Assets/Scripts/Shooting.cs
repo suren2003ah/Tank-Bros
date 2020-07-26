@@ -19,7 +19,6 @@ public class Shooting : MonoBehaviour {
 		} else if (shootMode == 0 && bulletsLeft > 0 && mg.bulletCount > 0) {
 			bulletsLeft--;
 			mg.bulletCount--;
-
 			GameObject instBullet = Instantiate(Bullet, transform.position, Quaternion.identity) as GameObject;
 			instBullet.GetComponent<Bullet>().player = GetComponentInParent<Player>();
 			instBullet.GetComponent<Bullet>().shooting = this;
@@ -27,6 +26,17 @@ public class Shooting : MonoBehaviour {
 			instBulletRigidbody.AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
 			CameraShaker.Shake(CameraShaker.Instance.shoot);
 		}
+		else if (shootMode == 2)
+        {
+			GameObject instBullet = Instantiate(Bullet, transform.position, Quaternion.identity) as GameObject;
+			instBullet.GetComponent<Bullet>().player = GetComponentInParent<Player>();
+			instBullet.GetComponent<Bullet>().shooting = this;
+			Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
+			instBulletRigidbody.AddForce(transform.forward * bulletSpeed * 5, ForceMode.VelocityChange);
+			CameraShaker.Shake(CameraShaker.Instance.shoot);
+			gameObject.layer = 10;
+			shootMode = 0;
+        }
 	}
 	IEnumerator BombPlant() {
 		Vector3 initialPos = transform.position;
