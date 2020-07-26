@@ -12,6 +12,7 @@ TagManager:
   - Mine
   - ShieldPowerUp
   - Shield
+  - LazerPowerUp
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - 
   - PostProcessing
   - Wall
-  - 
-  - 
+  - Lazer
+  - Player
   - 
   - 
   - 

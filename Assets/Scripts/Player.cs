@@ -33,6 +33,11 @@ public class Player : MonoBehaviour {
 		Destroy(powerup);
 		speedTimeout += 10f;
 	}
+	void Lazer(GameObject powerup)
+    {
+		shooting.shootMode = 2;
+		Destroy(powerup);
+	}
 	void OnCollisionEnter(Collision collisionInfo)
     {
         if (collisionInfo.collider.tag == "SpeedPowerUp")
@@ -44,6 +49,10 @@ public class Player : MonoBehaviour {
 			shield.SetActive(true);
 			Destroy(collisionInfo.collider.gameObject);
 		}
+		if (collisionInfo.collider.tag == "LazerPowerUp")
+        {
+			Lazer(collisionInfo.collider.gameObject);
+        }
 		if (collisionInfo.collider.tag == "MinePowerUp")
         {
 			shooting.shootMode = 1;
