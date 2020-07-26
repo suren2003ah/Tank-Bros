@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour {
 					Destroy(gameObject);
 					SoundManager.PlayDie();
 				}
-			if (lazer)
+			if (!lazer)
 				SoundManager.PlayHit();
 		} else if (collisionInfo.collider.tag == "Bullet" && player.GetComponentInChildren<Shooting>().shootMode != 2) {
 			SoundManager.PlayHit();
@@ -65,7 +65,7 @@ public class Bullet : MonoBehaviour {
 		deathTime = Time.time + lifeTime;
 		audioSrc = GetComponent<AudioSource>();
 		SoundManager.PlayShoot();
-		lazer = GetComponent<MeshRenderer>() == null;
+		lazer = !GetComponent<MeshRenderer>().enabled;
 	}
 	void Update() {
 		alive += Time.deltaTime;
