@@ -94,10 +94,6 @@ public class Player : MonoBehaviour {
 			forwardForce = initialForwardForce;
 			speedTimeout = 0;
 		}
-        if (Input.GetKeyDown("r"))
-        {
-			StartCoroutine(RickRoll());
-        }
 	}
 	void FixedUpdate() {
 		if (playerNumber == 1) {
@@ -137,10 +133,4 @@ public class Player : MonoBehaviour {
 			rb.AddTorque(0, input * turnForce, 0);
 		}
 	}
-	IEnumerator RickRoll()
-    {
-		GetComponent<AudioSource>().Play();
-		yield return new WaitForSeconds(18.5f);
-		GetComponent<AudioSource>().Stop();
-    }
 }

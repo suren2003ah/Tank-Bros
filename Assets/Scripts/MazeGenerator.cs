@@ -68,8 +68,10 @@ public class MazeGenerator : MonoBehaviour {
 
 
 		//Set max bullets
+		//Enable music
 		if (gameNumber == 2) {
 			bulletCount = GameObject.FindGameObjectsWithTag("Player").Length * 2;
+			GetComponent<AudioSource>().Play();
 		}
 
 		//Remove all bullets from last game
@@ -172,6 +174,7 @@ public class MazeGenerator : MonoBehaviour {
 				gameOver = true;
 			}
 		}
+		if(Input.GetKeyDown("m")) GetComponent<AudioSource>().mute ^= true;
 	}
 
 	//At this point after what Suren has done to the code I don't care about
